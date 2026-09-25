@@ -18,7 +18,7 @@ const [ripetiPassword, setRipetiPassword] = useState('');
     setErrore('');
 
     try {
-      const risposta = await fetch('http://localhost:3000/login', {
+      const risposta = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -44,7 +44,7 @@ const [ripetiPassword, setRipetiPassword] = useState('');
 }
 
   async function caricaTasks() {
-    const risposta = await fetch('http://localhost:3000/tasks', {
+    const risposta = await fetch(`${import.meta.env.VITE_API_URL}/tasks`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
 
@@ -66,7 +66,7 @@ const [ripetiPassword, setRipetiPassword] = useState('');
 async function creaTask() {
   if (!nuovoTitolo.trim()) return;
 
-  const risposta = await fetch('http://localhost:3000/tasks', {
+  const risposta = await fetch(`${import.meta.env.VITE_API_URL}/tasks`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ async function creaTask() {
 }
 
 async function eliminaTask(id: number) {
-  const risposta = await fetch(`http://localhost:3000/tasks/${id}`, {
+  const risposta = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${id}`, {
     method: 'DELETE',
     headers: { 'Authorization': `Bearer ${token}` }
   });
@@ -100,7 +100,7 @@ async function eliminaTask(id: number) {
 }
 
 async function salvaModifica(id: number) {
-  const risposta = await fetch(`http://localhost:3000/tasks/${id}`, {
+  const risposta = await fetch(`${import.meta.env.VITE_API_URL}/tasks/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ async function handleRegister() {
   }
 
   try {
-    const risposta = await fetch('http://localhost:3000/register', {
+    const risposta = await fetch(`${import.meta.env.VITE_API_URL}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome, email, password })
